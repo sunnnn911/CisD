@@ -8,6 +8,7 @@
   --sand: #EFE4CE;
   --sand-deep: #E2D3B4;
   --leaf: #4A7C59;
+  --leaf-deep: #3C6A49;
   --night: #131B24;
   --night-deep: #0B1116;
   --glow: #FFE29A;
@@ -16,21 +17,11 @@
 
 * { box-sizing: border-box; }
 
-body {
-  margin: 0;
-  background: var(--sand);
-  color: var(--ink);
-  font-family: 'Noto Sans KR', sans-serif;
-}
+body { margin: 0; background: var(--sand); color: var(--ink); font-family: 'Noto Sans KR', sans-serif; }
 
 /* ---------- HERO / GAUGE ---------- */
 
-.hero {
-  background: var(--dusk);
-  color: var(--sand);
-  padding: 48px 24px 56px;
-  text-align: center;
-}
+.hero { background: var(--dusk); color: var(--sand); padding: 40px 24px 44px; text-align: center; }
 
 .eyebrow {
   font-family: 'IBM Plex Mono', monospace;
@@ -41,27 +32,10 @@ body {
   margin: 0 0 10px;
 }
 
-.hero h1 {
-  font-family: 'Do Hyeon', sans-serif;
-  font-size: clamp(32px, 6vw, 52px);
-  margin: 0 0 10px;
-  letter-spacing: 0.02em;
-}
+.hero h1 { font-family: 'Do Hyeon', sans-serif; font-size: clamp(32px, 6vw, 52px); margin: 0 0 10px; letter-spacing: 0.02em; }
+.subtitle { margin: 0 auto 28px; max-width: 540px; color: var(--sand-deep); font-size: 15px; line-height: 1.6; }
 
-.subtitle {
-  margin: 0 auto 32px;
-  max-width: 520px;
-  color: var(--sand-deep);
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.gauge-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
+.gauge-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 
 .gauge {
   position: relative;
@@ -86,15 +60,8 @@ body {
   overflow: hidden;
 }
 
-.gauge-cells span {
-  background: rgba(242,166,90,0.08);
-  transition: background 0.4s ease, box-shadow 0.4s ease;
-}
-
-.gauge-cells span.filled {
-  background: var(--amber);
-  box-shadow: 0 0 8px rgba(242,166,90,0.7);
-}
+.gauge-cells span { background: rgba(242,166,90,0.08); transition: background 0.4s ease, box-shadow 0.4s ease; }
+.gauge-cells span.filled { background: var(--amber); box-shadow: 0 0 8px rgba(242,166,90,0.7); }
 
 .gauge-label {
   position: relative;
@@ -107,175 +74,8 @@ body {
 }
 
 .percent-sign { font-size: 16px; margin-left: 2px; }
-
-.gauge-caption {
-  font-size: 13px;
-  color: var(--sand-deep);
-  margin: 0;
-}
-
+.gauge-caption { font-size: 13px; color: var(--sand-deep); margin: 0; }
 #gaugeStatus { color: var(--amber-soft); font-weight: 500; }
-
-/* ---------- PLAYGROUND GRID ---------- */
-
-.playground {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
-  padding: 36px 24px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.playground.disabled .device-card {
-  pointer-events: none;
-  opacity: 0.55;
-}
-
-.device-card {
-  background: white;
-  border-radius: 16px;
-  border: 1px solid var(--sand-deep);
-  padding: 14px 14px 18px;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.device-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(43,58,66,0.12);
-}
-
-.device-card.charged {
-  border-color: var(--amber);
-  box-shadow: 0 0 0 2px rgba(242,166,90,0.25);
-}
-
-.device-stage {
-  position: relative;
-  background: var(--dusk);
-  border-radius: 10px;
-  overflow: hidden;
-  height: 140px;
-}
-
-.stage-svg { width: 100%; height: 100%; }
-
-.slide-frame, .plank, .wheel-ring, .wheel-spoke, .carousel-base, .swing-bar, .swing-rope, .pad-base {
-  fill: none;
-  stroke: var(--sand-deep);
-  stroke-width: 4;
-  stroke-linecap: round;
-}
-
-.pad-base { fill: var(--dusk-deep); stroke: var(--amber-soft); stroke-width: 3; }
-.pad-number { fill: var(--sand); font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; }
-
-.rider {
-  fill: var(--amber);
-}
-.rider-b { fill: var(--leaf); }
-
-.seesaw-pivot { fill: var(--sand-deep); }
-
-.device-info h2 {
-  font-size: 15px;
-  margin: 12px 0 4px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 700;
-}
-
-.device-info p {
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: #55524A;
-  margin: 0 0 8px;
-}
-
-.tag {
-  display: inline-block;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  color: var(--leaf);
-  background: rgba(74,124,89,0.1);
-  padding: 3px 8px;
-  border-radius: 999px;
-}
-
-/* spark burst on click */
-.spark-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.spark {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--amber);
-  box-shadow: 0 0 6px var(--amber);
-  animation: sparkOut 0.6s ease-out forwards;
-}
-@keyframes sparkOut {
-  from { transform: translate(0,0) scale(1); opacity: 1; }
-  to { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
-}
-
-/* device motion animations, triggered via .playing class */
-#rider-slide { transform-origin: center; }
-.playing#rider-slide, .device-stage .playing#rider-slide {
-  animation: slideDown 0.9s ease-in forwards;
-}
-@keyframes slideDown {
-  0%   { transform: translate(0,0); }
-  100% { transform: translate(140px, 110px); }
-}
-
-.swing-pivot { transform-origin: 100px 10px; }
-.swing-pivot.playing {
-  animation: swingMotion 0.9s ease-in-out;
-}
-@keyframes swingMotion {
-  0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(28deg); }
-  50%  { transform: rotate(0deg); }
-  75%  { transform: rotate(-28deg); }
-  100% { transform: rotate(0deg); }
-}
-
-.seesaw-plank { transform-origin: 100px 100px; }
-.seesaw-plank.playing {
-  animation: seesawMotion 0.9s ease-in-out;
-}
-@keyframes seesawMotion {
-  0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(-16deg); }
-  75%  { transform: rotate(16deg); }
-  100% { transform: rotate(0deg); }
-}
-
-.carousel-spin { transform-origin: 100px 80px; }
-.carousel-spin.playing {
-  animation: spinMotion 0.9s linear;
-}
-@keyframes spinMotion {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-#rider-numberpad.playing .pad-base {
-  animation: padPress 0.35s ease-in-out;
-}
-@keyframes padPress {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(0.92); }
-}
-
-.wheel-spin { transform-origin: 100px 80px; }
-.wheel-spin.playing {
-  animation: spinMotion 0.9s ease-in-out;
-}
 
 /* ---------- STORAGE STRIP ---------- */
 
@@ -286,96 +86,174 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 28px;
-  padding: 14px 24px;
+  padding: 12px 24px;
   font-size: 13px;
   font-family: 'IBM Plex Mono', monospace;
 }
 
 .storage-item { display: flex; align-items: center; gap: 8px; }
-
-.storage-dot {
-  width: 9px; height: 9px; border-radius: 50%;
-  display: inline-block;
-  background: var(--amber);
-}
+.storage-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; background: var(--amber); }
 .storage-dot.ess { background: var(--sand); }
 .storage-dot.grid { background: var(--dusk); }
 
-/* ---------- VILLAGE ---------- */
+/* ---------- SCENE STAGE (사진 비율 1536:1024 = 3:2 에 맞춤) ---------- */
 
-.village {
-  padding: 36px 24px 20px;
-  text-align: center;
+.scene-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1536 / 1024;
+  overflow: hidden;
   background: var(--night-deep);
 }
 
-.village-eyebrow {
-  color: var(--amber-soft);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin: 0 0 16px;
+.scene { position: absolute; inset: 0; opacity: 0; transform: scale(1.03); transition: opacity 0.9s ease, transform 0.9s ease; pointer-events: none; }
+.scene.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+
+/* ---------- 낮의 놀이터 (사진 배경) ---------- */
+
+.landscape-bg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ---------- 스파크 이펙트 ---------- */
+
+.spark-field { position: absolute; inset: 0; pointer-events: none; }
+.spark-layer { position: absolute; width: 0; height: 0; transform: translate(-50%, -50%); }
+
+.spark {
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 6px var(--amber);
+  animation: sparkOut 0.6s ease-out forwards;
+}
+@keyframes sparkOut {
+  from { transform: translate(0,0) scale(1); opacity: 1; }
+  to { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
 }
 
-.village-svg {
-  width: 100%;
-  max-width: 800px;
+/* ---------- 손가락 터치 버튼 ---------- */
+
+.touch-field { position: absolute; inset: 0; transition: opacity 0.4s ease; }
+.touch-field.hidden { opacity: 0; pointer-events: none; }
+
+.touch-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  border: 2px dashed var(--amber);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.12s ease, background 0.12s ease;
 }
 
-.sky { fill: var(--night); transition: fill 1.2s ease; }
+.touch-btn::before {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  opacity: 0.55;
+  animation: ringPulse 1.8s ease-out infinite;
+}
+
+@keyframes ringPulse {
+  from { transform: scale(0.85); opacity: 0.55; }
+  to   { transform: scale(1.55); opacity: 0; }
+}
+
+.touch-btn:active { transform: translate(-50%, -50%) scale(0.88); background: var(--amber-soft); }
+
+.touch-btn.tapped { animation: tapBounce 0.3s ease; }
+@keyframes tapBounce {
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  40%  { transform: translate(-50%, -50%) scale(0.8); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* 탭했을 때 놀이기구 위치에서 퍼지는 에너지 발광 효과 */
+.glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,166,90,0.9) 0%, rgba(242,166,90,0) 70%);
+  opacity: 0;
+  pointer-events: none;
+}
+.touch-btn.tapped .glow { animation: glowBurst 0.6s ease-out; }
+@keyframes glowBurst {
+  0%   { opacity: 0.9; transform: scale(1); }
+  100% { opacity: 0; transform: scale(3.4); }
+}
+
+/* ---------- 밤의 마을 풍경 ---------- */
+
+.village-svg { width: 100%; height: 100%; display: block; }
+.village-scene { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+.sky { fill: var(--night); }
 .moon-sun { fill: #DCE3E8; transition: fill 1s ease, r 1s ease; }
 
 .pole, .lamp-pole { stroke: #3A4753; stroke-width: 4; }
 .blade { stroke: #55606B; stroke-width: 4; stroke-linecap: round; }
-.blades { transform-origin: center; transition: opacity 0.6s ease; }
+
+#blades1 { transform-box: view-box; transform-origin: 60px 90px; }
+#blades2 { transform-box: view-box; transform-origin: 130px 100px; }
 
 .panel { fill: #2E3A44; stroke: #55606B; stroke-width: 2; }
 .panel-line { stroke: #55606B; stroke-width: 1.5; }
 
 .house-body { fill: #232D36; stroke: #3A4753; stroke-width: 2; }
 .house-roof { fill: #1A222A; }
-.window { fill: #3A4753; transition: fill 0.6s ease, box-shadow 0.6s ease; }
-
+.window { fill: #3A4753; transition: fill 0.6s ease; }
 .lamp-bulb { fill: #3A4753; transition: fill 0.6s ease; }
 
 .still-body { fill: #2E3A44; stroke: #55606B; stroke-width: 2; }
 .water-roller { fill: #55606B; }
-
 .ground { fill: var(--dusk-deep); }
 
-/* lit state, added when charge reaches 100% */
-.village.lit .window { fill: var(--glow); filter: drop-shadow(0 0 5px var(--glow)); }
-.village.lit .lamp-bulb { fill: var(--glow); filter: drop-shadow(0 0 8px var(--glow)); }
-.village.lit .moon-sun { fill: #FFE9B0; r: 30; }
-.village.lit .blades { animation: turbineSpin 3s linear infinite; }
+.village-scene.lit .window { fill: var(--glow); filter: drop-shadow(0 0 5px var(--glow)); }
+.village-scene.lit .lamp-bulb { fill: var(--glow); filter: drop-shadow(0 0 8px var(--glow)); }
+.village-scene.lit .moon-sun { fill: #FFE9B0; r: 30; }
+.village-scene.lit .blades { animation: turbineSpin 3s linear infinite; }
 
-.village.lit #win1 { transition-delay: 0.15s; }
-.village.lit #win2 { transition-delay: 0.3s; }
-.village.lit #win3 { transition-delay: 0.45s; }
-.village.lit #win4 { transition-delay: 0.6s; }
-.village.lit #win5 { transition-delay: 0.75s; }
-.village.lit #lamp1 .lamp-bulb { transition-delay: 0.9s; }
-.village.lit #lamp2 .lamp-bulb { transition-delay: 1.05s; }
+.village-scene.lit #win1 { transition-delay: 0.15s; }
+.village-scene.lit #win2 { transition-delay: 0.3s; }
+.village-scene.lit #win3 { transition-delay: 0.45s; }
+.village-scene.lit #win4 { transition-delay: 0.6s; }
+.village-scene.lit #win5 { transition-delay: 0.75s; }
+.village-scene.lit #lamp1 .lamp-bulb { transition-delay: 0.9s; }
+.village-scene.lit #lamp2 .lamp-bulb { transition-delay: 1.05s; }
 
-@keyframes turbineSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+@keyframes turbineSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 .village-message {
-  margin: 18px 0 0;
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
   color: var(--sand-deep);
   font-size: 14px;
+  text-align: center;
+  width: 90%;
+  opacity: 0;
+  transition: opacity 0.8s ease 1.1s;
 }
 
-.village.lit .village-message { color: var(--glow); font-weight: 500; }
+.village-scene.lit .village-message { color: var(--glow); font-weight: 500; opacity: 1; }
 
 /* ---------- RESET BUTTON ---------- */
 
 .reset-btn {
   display: block;
-  margin: 0 auto 40px;
+  margin: 28px auto 40px;
   padding: 12px 28px;
   background: var(--amber);
   color: var(--night-deep);
@@ -392,4 +270,5 @@ body {
 
 @media (max-width: 480px) {
   .gauge-cells { grid-template-columns: repeat(10, 1fr); }
+  .touch-btn { width: 40px; height: 40px; font-size: 18px; }
 }
