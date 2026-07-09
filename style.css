@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root {
+  --dusk: #2B3A42;
+  --dusk-deep: #1F2A30;
+  --amber: #F2A65A;
+  --amber-soft: #F7C68B;
+  --sand: #EFE4CE;
+  --sand-deep: #E2D3B4;
+  --leaf: #4A7C59;
+  --night: #131B24;
+  --night-deep: #0B1116;
+  --glow: #FFE29A;
+  --ink: #22201B;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* ---------- HERO / GAUGE ---------- */
+
+.hero {
+  background: var(--dusk);
+  color: var(--sand);
+  padding: 48px 24px 56px;
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--amber-soft);
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.hero h1 {
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: clamp(32px, 6vw, 52px);
+  margin: 0 0 10px;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  margin: 0 auto 32px;
+  max-width: 520px;
+  color: var(--sand-deep);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.gauge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.gauge {
+  position: relative;
+  width: min(90vw, 480px);
+  height: 64px;
+  background: var(--night-deep);
+  border-radius: 14px;
+  border: 2px solid rgba(242,166,90,0.35);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-cells {
+  position: absolute;
+  inset: 8px;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  gap: 3px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.gauge-cells span {
+  background: rgba(242,166,90,0.08);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gauge-cells span.filled {
+  background: var(--amber);
+  box-shadow: 0 0 8px rgba(242,166,90,0.7);
+}
+
+.gauge-label {
+  position: relative;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--sand);
+  z-index: 2;
+  text-shadow: 0 0 12px rgba(0,0,0,0.6);
+}
+
+.percent-sign { font-size: 16px; margin-left: 2px; }
+
+.gauge-caption {
+  font-size: 13px;
+  color: var(--sand-deep);
+  margin: 0;
+}
+
+#gaugeStatus { color: var(--amber-soft); font-weight: 500; }
+
+/* ---------- PLAYGROUND GRID ---------- */
+
+.playground {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  padding: 36px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.playground.disabled .device-card {
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.device-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--sand-deep);
+  padding: 14px 14px 18px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.device-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(43,58,66,0.12);
+}
+
+.device-card.charged {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 2px rgba(242,166,90,0.25);
+}
+
+.device-stage {
+  position: relative;
+  background: var(--dusk);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 140px;
+}
+
+.stage-svg { width: 100%; height: 100%; }
+
+.slide-frame, .plank, .wheel-ring, .wheel-spoke, .carousel-base, .swing-bar, .swing-rope, .pad-base {
+  fill: none;
+  stroke: var(--sand-deep);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.pad-base { fill: var(--dusk-deep); stroke: var(--amber-soft); stroke-width: 3; }
+.pad-number { fill: var(--sand); font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; }
+
+.rider {
+  fill: var(--amber);
+}
+.rider-b { fill: var(--leaf); }
+
+.seesaw-pivot { fill: var(--sand-deep); }
+
+.device-info h2 {
+  font-size: 15px;
+  margin: 12px 0 4px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+}
+
+.device-info p {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #55524A;
+  margin: 0 0 8px;
+}
+
+.tag {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: var(--leaf);
+  background: rgba(74,124,89,0.1);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+/* spark burst on click */
+.spark-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 6px var(--amber);
+  animation: sparkOut 0.6s ease-out forwards;
+}
+@keyframes sparkOut {
+  from { transform: translate(0,0) scale(1); opacity: 1; }
+  to { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+
+/* device motion animations, triggered via .playing class */
+#rider-slide { transform-origin: center; }
+.playing#rider-slide, .device-stage .playing#rider-slide {
+  animation: slideDown 0.9s ease-in forwards;
+}
+@keyframes slideDown {
+  0%   { transform: translate(0,0); }
+  100% { transform: translate(140px, 110px); }
+}
+
+.swing-pivot { transform-origin: 100px 10px; }
+.swing-pivot.playing {
+  animation: swingMotion 0.9s ease-in-out;
+}
+@keyframes swingMotion {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(28deg); }
+  50%  { transform: rotate(0deg); }
+  75%  { transform: rotate(-28deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.seesaw-plank { transform-origin: 100px 100px; }
+.seesaw-plank.playing {
+  animation: seesawMotion 0.9s ease-in-out;
+}
+@keyframes seesawMotion {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(-16deg); }
+  75%  { transform: rotate(16deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.carousel-spin { transform-origin: 100px 80px; }
+.carousel-spin.playing {
+  animation: spinMotion 0.9s linear;
+}
+@keyframes spinMotion {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+#rider-numberpad.playing .pad-base {
+  animation: padPress 0.35s ease-in-out;
+}
+@keyframes padPress {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.92); }
+}
+
+.wheel-spin { transform-origin: 100px 80px; }
+.wheel-spin.playing {
+  animation: spinMotion 0.9s ease-in-out;
+}
+
+/* ---------- STORAGE STRIP ---------- */
+
+.storage-strip {
+  background: var(--leaf);
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+  padding: 14px 24px;
+  font-size: 13px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.storage-item { display: flex; align-items: center; gap: 8px; }
+
+.storage-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  display: inline-block;
+  background: var(--amber);
+}
+.storage-dot.ess { background: var(--sand); }
+.storage-dot.grid { background: var(--dusk); }
+
+/* ---------- VILLAGE ---------- */
+
+.village {
+  padding: 36px 24px 20px;
+  text-align: center;
+  background: var(--night-deep);
+}
+
+.village-eyebrow {
+  color: var(--amber-soft);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.village-svg {
+  width: 100%;
+  max-width: 800px;
+}
+
+.sky { fill: var(--night); transition: fill 1.2s ease; }
+.moon-sun { fill: #DCE3E8; transition: fill 1s ease, r 1s ease; }
+
+.pole, .lamp-pole { stroke: #3A4753; stroke-width: 4; }
+.blade { stroke: #55606B; stroke-width: 4; stroke-linecap: round; }
+.blades { transform-origin: center; transition: opacity 0.6s ease; }
+
+.panel { fill: #2E3A44; stroke: #55606B; stroke-width: 2; }
+.panel-line { stroke: #55606B; stroke-width: 1.5; }
+
+.house-body { fill: #232D36; stroke: #3A4753; stroke-width: 2; }
+.house-roof { fill: #1A222A; }
+.window { fill: #3A4753; transition: fill 0.6s ease, box-shadow 0.6s ease; }
+
+.lamp-bulb { fill: #3A4753; transition: fill 0.6s ease; }
+
+.still-body { fill: #2E3A44; stroke: #55606B; stroke-width: 2; }
+.water-roller { fill: #55606B; }
+
+.ground { fill: var(--dusk-deep); }
+
+/* lit state, added when charge reaches 100% */
+.village.lit .window { fill: var(--glow); filter: drop-shadow(0 0 5px var(--glow)); }
+.village.lit .lamp-bulb { fill: var(--glow); filter: drop-shadow(0 0 8px var(--glow)); }
+.village.lit .moon-sun { fill: #FFE9B0; r: 30; }
+.village.lit .blades { animation: turbineSpin 3s linear infinite; }
+
+.village.lit #win1 { transition-delay: 0.15s; }
+.village.lit #win2 { transition-delay: 0.3s; }
+.village.lit #win3 { transition-delay: 0.45s; }
+.village.lit #win4 { transition-delay: 0.6s; }
+.village.lit #win5 { transition-delay: 0.75s; }
+.village.lit #lamp1 .lamp-bulb { transition-delay: 0.9s; }
+.village.lit #lamp2 .lamp-bulb { transition-delay: 1.05s; }
+
+@keyframes turbineSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.village-message {
+  margin: 18px 0 0;
+  color: var(--sand-deep);
+  font-size: 14px;
+}
+
+.village.lit .village-message { color: var(--glow); font-weight: 500; }
+
+/* ---------- RESET BUTTON ---------- */
+
+.reset-btn {
+  display: block;
+  margin: 0 auto 40px;
+  padding: 12px 28px;
+  background: var(--amber);
+  color: var(--night-deep);
+  border: none;
+  border-radius: 999px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.reset-btn:hover { transform: scale(1.04); background: var(--amber-soft); }
+
+@media (max-width: 480px) {
+  .gauge-cells { grid-template-columns: repeat(10, 1fr); }
+}
