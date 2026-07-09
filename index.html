@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>에너지 놀이터</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hero">
+    <p class="eyebrow">지속가능 에너지 탐구 프로젝트</p>
+    <h1>에너지 놀이터</h1>
+    <p class="subtitle">놀이기구를 눌러 아이들이 만드는 운동에너지를 전기로 바꿔보세요</p>
+
+    <div class="gauge-wrap">
+      <div class="gauge">
+        <div class="gauge-cells" id="gaugeCells"></div>
+        <div class="gauge-label">
+          <span id="gaugePercent">0</span><span class="percent-sign">%</span>
+        </div>
+      </div>
+      <p class="gauge-caption">마이크로그리드 충전량 <span id="gaugeStatus">가동 대기 중</span></p>
+    </div>
+  </header>
+
+  <main class="playground" id="playground">
+
+    <section class="device-card" data-device="slide">
+      <div class="device-stage">
+        <svg viewBox="0 0 200 160" class="stage-svg">
+          <polyline points="30,150 30,40 170,150" class="slide-frame" />
+          <circle cx="30" cy="35" r="9" class="rider" id="rider-slide" />
+        </svg>
+        <div class="spark-layer" id="spark-slide"></div>
+      </div>
+      <div class="device-info">
+        <h2>미끄럼틀 발전기</h2>
+        <p>롤러 구조를 타고 내려오는 회전 운동을 발전기 축에 연결</p>
+        <span class="tag">위치→운동에너지 전환 · 패러데이 전자기 유도</span>
+      </div>
+    </section>
+
+    <section class="device-card" data-device="swing">
+      <div class="device-stage">
+        <svg viewBox="0 0 200 160" class="stage-svg">
+          <line x1="40" y1="10" x2="160" y2="10" class="swing-bar" />
+          <g id="rider-swing" class="swing-pivot">
+            <line x1="0" y1="0" x2="0" y2="90" class="swing-rope" />
+            <circle cx="0" cy="95" r="9" class="rider" />
+          </g>
+        </svg>
+        <div class="spark-layer" id="spark-swing"></div>
+      </div>
+      <div class="device-info">
+        <h2>그네 발전기</h2>
+        <p>왕복 운동 과정에서 발생하는 운동에너지를 발전기로 회수</p>
+        <span class="tag">위치→운동에너지 전환 · 패러데이 전자기 유도</span>
+      </div>
+    </section>
+
+    <section class="device-card" data-device="seesaw">
+      <div class="device-stage">
+        <svg viewBox="0 0 200 160" class="stage-svg">
+          <polygon points="90,120 110,120 100,100" class="seesaw-pivot" />
+          <g id="rider-seesaw" class="seesaw-plank">
+            <line x1="20" y1="0" x2="180" y2="0" class="plank" />
+            <circle cx="35" cy="-9" r="9" class="rider" />
+            <circle cx="165" cy="-9" r="9" class="rider rider-b" />
+          </g>
+        </svg>
+        <div class="spark-layer" id="spark-seesaw"></div>
+      </div>
+      <div class="device-info">
+        <h2>시소 발전기</h2>
+        <p>반복적인 상하 압력 변화를 압전 소자와 크랭크축에 함께 활용</p>
+        <span class="tag">압전 효과 · 반복 하중 → 전기에너지</span>
+      </div>
+    </section>
+
+    <section class="device-card" data-device="carousel">
+      <div class="device-stage">
+        <svg viewBox="0 0 200 160" class="stage-svg">
+          <circle cx="100" cy="80" r="55" class="carousel-base" />
+          <g id="rider-carousel" class="carousel-spin">
+            <circle cx="100" cy="35" r="8" class="rider" />
+            <circle cx="145" cy="80" r="8" class="rider rider-b" />
+            <circle cx="100" cy="125" r="8" class="rider" />
+            <circle cx="55" cy="80" r="8" class="rider rider-b" />
+          </g>
+        </svg>
+        <div class="spark-layer" id="spark-carousel"></div>
+      </div>
+      <div class="device-info">
+        <h2>회전 놀이기구 발전기</h2>
+        <p>회전판의 토크를 기어비로 증폭해 소형 발전기 축을 구동</p>
+        <span class="tag">토크 · 회전운동 → 전기에너지</span>
+      </div>
+    </section>
+
+    <section class="device-card" data-device="numberpad">
+      <div class="device-stage">
+        <svg viewBox="0 0 200 160" class="stage-svg">
+          <g id="rider-numberpad">
+            <rect x="60" y="60" width="80" height="80" rx="10" class="pad-base" />
+            <text x="100" y="108" text-anchor="middle" class="pad-number">7</text>
+          </g>
+        </svg>
+        <div class="spark-layer" id="spark-numberpad"></div>
+      </div>
+      <div class="device-info">
+        <h2>숫자 놀이 패드</h2>
+        <p>발을 구르며 밟는 압력을 압전 필름이 전기 신호로 변환</p>
+        <span class="tag">압전 효과 · 압력 → 전기에너지</span>
+      </div>
+    </section>
+
+    <section class="device-card" data-device="wheel">
+      <div class="device-stage">
+        <svg viewBox="0 0 200 160" class="stage-svg">
+          <g id="rider-wheel" class="wheel-spin">
+            <circle cx="100" cy="80" r="45" class="wheel-ring" />
+            <line x1="100" y1="35" x2="100" y2="125" class="wheel-spoke" />
+            <line x1="55" y1="80" x2="145" y2="80" class="wheel-spoke" />
+          </g>
+        </svg>
+        <div class="spark-layer" id="spark-wheel"></div>
+      </div>
+      <div class="device-info">
+        <h2>손잡이 회전 장치</h2>
+        <p>배·자동차 핸들 모양의 손잡이를 돌리며 만든 회전력을 발전기로 전달</p>
+        <span class="tag">토크 · 회전운동 → 전기에너지</span>
+      </div>
+    </section>
+
+  </main>
+
+  <section class="storage-strip">
+    <div class="storage-item">
+      <span class="storage-dot cap"></span>
+      슈퍼커패시터 순간 저장
+    </div>
+    <div class="storage-item">
+      <span class="storage-dot ess"></span>
+      폐배터리 ESS 장기 저장
+    </div>
+    <div class="storage-item">
+      <span class="storage-dot grid"></span>
+      마이크로그리드 배전
+    </div>
+  </section>
+
+  <section class="village" id="village">
+    <p class="village-eyebrow">저장된 전력이 공급되는 마을</p>
+    <svg viewBox="0 0 800 220" class="village-svg" id="villageSvg">
+      <rect x="0" y="0" width="800" height="220" class="sky" />
+      <circle cx="700" cy="45" r="26" class="moon-sun" id="moonSun" />
+
+      <!-- 풍력 발전기 -->
+      <g class="turbine" id="turbine1">
+        <line x1="60" y1="200" x2="60" y2="90" class="pole" />
+        <g class="blades" id="blades1">
+          <line x1="60" y1="90" x2="60" y2="55" class="blade" />
+          <line x1="60" y1="90" x2="90" y2="105" class="blade" />
+          <line x1="60" y1="90" x2="30" y2="105" class="blade" />
+        </g>
+      </g>
+      <g class="turbine" id="turbine2">
+        <line x1="130" y1="200" x2="130" y2="100" class="pole" />
+        <g class="blades" id="blades2">
+          <line x1="130" y1="100" x2="130" y2="65" class="blade" />
+          <line x1="130" y1="100" x2="160" y2="115" class="blade" />
+          <line x1="130" y1="100" x2="100" y2="115" class="blade" />
+        </g>
+      </g>
+
+      <!-- 태양광 패널 지붕 -->
+      <g class="solar-roof">
+        <polygon points="220,200 220,150 280,140 280,200" class="panel" />
+        <line x1="220" y1="165" x2="280" y2="155" class="panel-line" />
+        <line x1="220" y1="180" x2="280" y2="170" class="panel-line" />
+      </g>
+
+      <!-- 집들 -->
+      <g class="house" id="house1">
+        <rect x="330" y="150" width="70" height="50" class="house-body" />
+        <polygon points="325,150 400,150 362,120" class="house-roof" />
+        <rect x="345" y="165" width="16" height="16" class="window" id="win1" />
+        <rect x="370" y="165" width="16" height="16" class="window" id="win2" />
+      </g>
+      <g class="house" id="house2">
+        <rect x="430" y="140" width="80" height="60" class="house-body" />
+        <polygon points="424,140 512,140 468,105" class="house-roof" />
+        <rect x="450" y="158" width="18" height="18" class="window" id="win3" />
+        <rect x="480" y="158" width="18" height="18" class="window" id="win4" />
+      </g>
+      <g class="house" id="house3">
+        <rect x="540" y="155" width="65" height="45" class="house-body" />
+        <polygon points="535,155 610,155 572,128" class="house-roof" />
+        <rect x="555" y="170" width="15" height="15" class="window" id="win5" />
+      </g>
+
+      <!-- 가로등 -->
+      <g class="lamp" id="lamp1">
+        <line x1="640" y1="200" x2="640" y2="130" class="lamp-pole" />
+        <circle cx="640" cy="125" r="8" class="lamp-bulb" />
+      </g>
+      <g class="lamp" id="lamp2">
+        <line x1="740" y1="200" x2="740" y2="130" class="lamp-pole" />
+        <circle cx="740" cy="125" r="8" class="lamp-bulb" />
+      </g>
+
+      <!-- 태양열 증류 정수 시설 -->
+      <g class="still">
+        <polygon points="30,200 30,175 55,168 55,200" class="still-body" />
+      </g>
+
+      <!-- 롤러 물통 -->
+      <circle cx="150" cy="192" r="9" class="water-roller" />
+
+      <rect x="0" y="198" width="800" height="22" class="ground" />
+    </svg>
+
+    <p class="village-message" id="villageMessage">아직 마을에는 전력이 공급되지 않았습니다</p>
+  </section>
+
+  <button class="reset-btn" id="resetBtn">처음부터 다시</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
